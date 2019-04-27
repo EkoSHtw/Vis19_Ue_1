@@ -19,6 +19,9 @@ import android.graphics.drawable.ShapeDrawable
 import android.graphics.drawable.shapes.OvalShape
 import android.graphics.drawable.shapes.RectShape
 import android.widget.Toast
+import android.view.ViewTreeObserver
+
+
 
 
 class TaskFillFragment : Fragment() {
@@ -50,8 +53,34 @@ class TaskFillFragment : Fragment() {
     private fun setUp() {
 
 
-        val randomScale: Int = Random.nextInt(1, 10)
-        val randomScale2 = Random.nextInt(1, 10)
+        val randomScale: Int = Random.nextInt(1, 20)
+        val randomScale2 = Random.nextInt(1, 20)
+
+        val vto = image2.viewTreeObserver
+        vto.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
+            override fun onPreDraw(): Boolean {
+                // Remove after the first run so it doesn't fire forever
+                image2.viewTreeObserver.removeOnPreDrawListener(this)
+                val scaleValue =  Math.sqrt((image2.maxHeight * image2.maxWidth * randomScale).toDouble())
+                image2.scaleX = scaleValue.toFloat()
+                image2.scaleY = scaleValue.toFloat()
+                return true
+            }
+        })
+
+        val vt = image4.viewTreeObserver
+        vt.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
+            override fun onPreDraw(): Boolean {
+                // Remove after the first run so it doesn't fire forever
+                image4.viewTreeObserver.removeOnPreDrawListener(this)
+                val scaleValue = Math.sqrt((image4.maxHeight * image4.maxWidth * randomScale2).toDouble())
+                image4.scaleX = scaleValue.toFloat()
+                image4.scaleY = scaleValue.toFloat()
+                return true
+            }
+        })
+
+        /*
         var scaleFactor1 = randomScale.toFloat()
         var scaleFactor2 = randomScale2.toFloat()
         if(randomScale == 2){
@@ -64,11 +93,11 @@ class TaskFillFragment : Fragment() {
         } else {
             scaleFactor2 /= 2
         }
-        this.image2.scaleX = scaleFactor1
-        this.image2.scaleY = scaleFactor1
+        //this.image2.scaleX = scaleFactor1
+        //this.image2.scaleY = scaleFactor1
         this.image4.scaleX = scaleFactor2
         this.image4.scaleY = scaleFactor2
-
+        */
 
         /*
         val bitmap: Bitmap = Bitmap.createBitmap(800, 800, Bitmap.Config.ARGB_8888)
@@ -89,18 +118,17 @@ class TaskFillFragment : Fragment() {
         shapeRectangle1.draw(canvas)
         image1.background = BitmapDrawable(mContext?.resources, bitmap)
 
-        var sizeScale = (right - left) * (randomScale - 1) / 2
+        var sizeScale = (Math.sqrt(((right - left) * (right - left) * 2).toDouble())  / 2)
         val shapeRectangle2 = ShapeDrawable(RectShape())
         val bitmap2: Bitmap = Bitmap.createBitmap(800, 800, Bitmap.Config.ARGB_8888)
         val canvas2 = Canvas(bitmap2)
-        shapeRectangle2.setBounds( left - sizeScale, top - sizeScale, right + sizeScale, bottom + sizeScale)
+        shapeRectangle2.setBounds((left - sizeScale).toInt(), (top - sizeScale).toInt(), (right + sizeScale).toInt(), (bottom + sizeScale).toInt())
         shapeRectangle2.paint.color = Color.parseColor("#009944")
         shapeRectangle2.draw(canvas2)
         image2.background = BitmapDrawable(mContext?.resources, bitmap2)
 
 
-        val randomScale2 = Random.nextInt(1, 10)
-        sizeScale = (right - left) * (randomScale2 - 1) / 2
+        sizeScale = Math.sqrt(((right - left) * (right - left) * randomScale2).toDouble())  / 2
 
         // draw oval shape to canvas
         val bitmap3: Bitmap = Bitmap.createBitmap(800, 800, Bitmap.Config.ARGB_8888)
@@ -113,12 +141,11 @@ class TaskFillFragment : Fragment() {
 
         val bitmap4: Bitmap = Bitmap.createBitmap(800, 800, Bitmap.Config.ARGB_8888)
         val shapeOval2 = ShapeDrawable(OvalShape())
-        shapeOval2.setBounds( left - sizeScale, top - sizeScale, right + sizeScale, bottom + sizeScale)
+        shapeOval2.setBounds((left - sizeScale).toInt(), (top - sizeScale).toInt(), (right + sizeScale).toInt(), (bottom + sizeScale).toInt())
         shapeOval2.paint.color = Color.parseColor("#009191")
         val canvas4 = Canvas(bitmap4)
         shapeOval2.draw(canvas4)
         image4.background = BitmapDrawable(mContext?.resources, bitmap4)
-
         */
         this.buttonEnter.setOnClickListener {
             if(!editTextFilledAnswer.text.toString().isEmpty()&&!editTextFilledAnswer2.text.toString().isEmpty()) {

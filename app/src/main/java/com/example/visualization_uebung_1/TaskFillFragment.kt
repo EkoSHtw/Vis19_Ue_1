@@ -52,10 +52,22 @@ class TaskFillFragment : Fragment() {
 
         val randomScale: Int = Random.nextInt(1, 10)
         val randomScale2 = Random.nextInt(1, 10)
-        this.image2.scaleX = (1 + randomScale / 2).toFloat()
-        this.image2.scaleY = (1 + randomScale / 2 ).toFloat()
-        this.image4.scaleX = (1 + randomScale2 / 2 ).toFloat()
-        this.image4.scaleY = (1 + randomScale2 / 2 ).toFloat()
+        var scaleFactor1 = randomScale.toFloat()
+        var scaleFactor2 = randomScale2.toFloat()
+        if(randomScale == 2){
+            scaleFactor1 = 1.25f
+        } else {
+            scaleFactor1 /= 2
+        }
+        if(randomScale2 == 2){
+            scaleFactor2 = 1.25f
+        } else {
+            scaleFactor2 /= 2
+        }
+        this.image2.scaleX = scaleFactor1
+        this.image2.scaleY = scaleFactor1
+        this.image4.scaleX = scaleFactor2
+        this.image4.scaleY = scaleFactor2
 
 
         /*

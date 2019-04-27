@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Visualization_Uebung_1</string>
+    <string name="scale_question_1">Bitte gebe das Größenverhältnis an</string>
+    <string name="scale_question_2">Verwende den Slider um das passende Verhältnis anzuzeigen</string>
+
+    <string name="baseScale">1 :</string>
+
+    <!-- Actions-->
+    <string name="action_start_survey">Start Survey</string>
+    <string name="action_enter">Enter</string>
+</resources>

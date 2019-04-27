@@ -12,7 +12,7 @@ class SurveyActivity: AppCompatActivity(){
 
     var fillFragment: TaskFillFragment? = null
     var sliderFragment: TaskSliderFragment? = null
-    val result = ArrayList<Pair<Int, Int>>()
+    val result = ArrayList<ScalePair>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,8 +21,8 @@ class SurveyActivity: AppCompatActivity(){
         manager.beginTransaction().add( this.fragmentContainer.id, TaskFillFragment.newInstance(), "FillFragment").commit()
     }
 
-    fun setResult(input: Int, calculated: Int){
-        val pair = Pair(input, calculated)
+    fun setResult(shape: String, input: Int, calculated: Int){
+        val pair = ScalePair(shape, calculated, input)
         result.add(pair)
     }
 }

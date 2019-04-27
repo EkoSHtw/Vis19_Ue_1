@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment
 import android.graphics.drawable.ShapeDrawable
 import android.graphics.drawable.shapes.OvalShape
 import android.graphics.drawable.shapes.RectShape
+import android.widget.Toast
 
 
 class TaskFillFragment : Fragment() {
@@ -79,8 +80,8 @@ class TaskFillFragment : Fragment() {
         image2.background = BitmapDrawable(mContext?.resources, bitmap2)
 
 
-        randomScale = Random.nextInt(1, 8)
-        sizeScale = (right - left) * (randomScale - 1)
+        val randomScale2 = Random.nextInt(1, 8)
+        sizeScale = (right - left) * (randomScale2 - 1)
 
         // draw oval shape to canvas
         val bitmap3: Bitmap = Bitmap.createBitmap(800, 800, Bitmap.Config.ARGB_8888)
@@ -99,10 +100,25 @@ class TaskFillFragment : Fragment() {
         shapeOval2.draw(canvas4)
         image4.background = BitmapDrawable(mContext?.resources, bitmap4)
 
-
         this.buttonEnter.setOnClickListener {
-            activity?.setResult(editTextFilledAnswer.toString().toInt(), randomScale)
-        }
+            if(!editTextFilledAnswer.text.toString().isEmpty()&&!editTextFilledAnswer2.text.toString().isEmpty()) {
+                activity?.setResult("Rectangle", randomScale, this.editTextFilledAnswer.text.toString().toInt())
+                activity?.setResult("Circle", randomScale2, this.editTextFilledAnswer2.text.toString().toInt())
+                editTextFilledAnswer.text.clear()
+                editTextFilledAnswer.text.clear()
+                setUp()
+            } else {
+                Toast.makeText(context, "Please fill all fields", Toast.LENGTH_LONG).show()
+            }
 
+        }
     }
+
+    /*
+    interface EnterListener{
+        fun onEnter(){
+
+        }
+    }
+    */
 }

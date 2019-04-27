@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_task_enter.*
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.Color
 
@@ -25,7 +24,6 @@ import android.widget.Toast
 class TaskFillFragment : Fragment() {
 
     var activity: SurveyActivity? = null
-    private val randomScale: Int = Random.nextInt(1, 10)
     private var mContext: Context? = null
 
     override fun onAttach(context: Context?) {
@@ -34,8 +32,7 @@ class TaskFillFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_task_enter, null)
-        return view
+        return inflater.inflate(R.layout.fragment_task_enter, null)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -50,8 +47,18 @@ class TaskFillFragment : Fragment() {
         }
     }
 
-    fun setUp() {
-        var randomScale: Int = Random.nextInt(1, 8)
+    private fun setUp() {
+
+
+        val randomScale: Int = Random.nextInt(1, 10)
+        val randomScale2 = Random.nextInt(1, 10)
+        this.image2.scaleX = (1 + randomScale / 2).toFloat()
+        this.image2.scaleY = (1 + randomScale / 2 ).toFloat()
+        this.image4.scaleX = (1 + randomScale2 / 2 ).toFloat()
+        this.image4.scaleY = (1 + randomScale2 / 2 ).toFloat()
+
+
+        /*
         val bitmap: Bitmap = Bitmap.createBitmap(800, 800, Bitmap.Config.ARGB_8888)
         val canvas= Canvas(bitmap)
 
@@ -70,7 +77,7 @@ class TaskFillFragment : Fragment() {
         shapeRectangle1.draw(canvas)
         image1.background = BitmapDrawable(mContext?.resources, bitmap)
 
-        var sizeScale = (right - left) * (randomScale - 1)
+        var sizeScale = (right - left) * (randomScale - 1) / 2
         val shapeRectangle2 = ShapeDrawable(RectShape())
         val bitmap2: Bitmap = Bitmap.createBitmap(800, 800, Bitmap.Config.ARGB_8888)
         val canvas2 = Canvas(bitmap2)
@@ -80,8 +87,8 @@ class TaskFillFragment : Fragment() {
         image2.background = BitmapDrawable(mContext?.resources, bitmap2)
 
 
-        val randomScale2 = Random.nextInt(1, 8)
-        sizeScale = (right - left) * (randomScale2 - 1)
+        val randomScale2 = Random.nextInt(1, 10)
+        sizeScale = (right - left) * (randomScale2 - 1) / 2
 
         // draw oval shape to canvas
         val bitmap3: Bitmap = Bitmap.createBitmap(800, 800, Bitmap.Config.ARGB_8888)
@@ -100,20 +107,27 @@ class TaskFillFragment : Fragment() {
         shapeOval2.draw(canvas4)
         image4.background = BitmapDrawable(mContext?.resources, bitmap4)
 
+        */
         this.buttonEnter.setOnClickListener {
             if(!editTextFilledAnswer.text.toString().isEmpty()&&!editTextFilledAnswer2.text.toString().isEmpty()) {
                 activity?.setResult("Rectangle", randomScale, this.editTextFilledAnswer.text.toString().toInt())
                 activity?.setResult("Circle", randomScale2, this.editTextFilledAnswer2.text.toString().toInt())
                 editTextFilledAnswer.text.clear()
-                editTextFilledAnswer.text.clear()
+                editTextFilledAnswer2.text.clear()
                 setUp()
             } else {
                 Toast.makeText(context, "Please fill all fields", Toast.LENGTH_LONG).show()
             }
+        }
 
+        this.buttonFinish.setOnClickListener{
+            activity?.setResult("Rectangle", randomScale, this.editTextFilledAnswer.text.toString().toInt())
+            activity?.setResult("Circle", randomScale2, this.editTextFilledAnswer2.text.toString().toInt())
+            editTextFilledAnswer.text.clear()
+            editTextFilledAnswer2.text.clear()
+            //TODO add mechanic to switch to result screen
         }
     }
-
     /*
     interface EnterListener{
         fun onEnter(){

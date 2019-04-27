@@ -8,4 +8,5 @@
     <!-- Actions-->
     <string name="action_start_survey">Start Survey</string>
     <string name="action_enter">Enter</string>
+    <string name="action_finish">Finish</string>
 </resources>

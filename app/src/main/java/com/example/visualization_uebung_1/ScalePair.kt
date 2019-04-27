@@ -12,6 +12,14 @@ class ScalePair(){
         this.userScale = userScale
     }
 
-
+    fun getShape(): String{ return shape}
+    fun getTrueScale(): Int{
+        if(trueScale == null) return 0;
+        return trueScale as Int
+    }
+    fun getUserScale(): Int{
+        if(userScale == null) return 0;
+        return userScale as Int
+    }
 
 }

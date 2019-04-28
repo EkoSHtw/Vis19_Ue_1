@@ -28,6 +28,7 @@ class TaskFillFragment : Fragment() {
 
     var activity: SurveyActivity? = null
     private var mContext: Context? = null
+    var listener: EnterListener? =  null
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
@@ -146,9 +147,9 @@ class TaskFillFragment : Fragment() {
         image4.background = BitmapDrawable(mContext?.resources, bitmap4)
         */
         this.buttonEnter.setOnClickListener {
-            if(!editTextFilledAnswer.text.toString().isEmpty()&&!editTextFilledAnswer2.text.toString().isEmpty()) {
-                activity?.setResult("Rectangle", randomScale, this.editTextFilledAnswer.text.toString().toInt())
-                activity?.setResult("Circle", randomScale2, this.editTextFilledAnswer2.text.toString().toInt())
+            if(!editTextFilledAnswer.text.toString().isEmpty() && !editTextFilledAnswer2.text.toString().isEmpty()) {
+                listener?.onEnter("Rectangle", randomScale, this.editTextFilledAnswer.text.toString().toInt())
+                listener?.onEnter("Circle", randomScale2, this.editTextFilledAnswer2.text.toString().toInt())
                 editTextFilledAnswer.text.clear()
                 editTextFilledAnswer2.text.clear()
                 setUp()
@@ -158,18 +159,15 @@ class TaskFillFragment : Fragment() {
         }
 
         this.buttonFinish.setOnClickListener{
-            activity?.setResult("Rectangle", randomScale, this.editTextFilledAnswer.text.toString().toInt())
-            activity?.setResult("Circle", randomScale2, this.editTextFilledAnswer2.text.toString().toInt())
+            listener?.onEnter("Rectangle", randomScale, this.editTextFilledAnswer.text.toString().toInt())
+            listener?.onEnter("Circle", randomScale2, this.editTextFilledAnswer2.text.toString().toInt())
             editTextFilledAnswer.text.clear()
             editTextFilledAnswer2.text.clear()
             //TODO add mechanic to switch to result screen
         }
     }
-    /*
-    interface EnterListener{
-        fun onEnter(){
 
-        }
+    interface EnterListener{
+        fun onEnter(form: String, scale: Int, gueass: Int)
     }
-    */
 }

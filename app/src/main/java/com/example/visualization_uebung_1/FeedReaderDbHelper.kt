@@ -22,12 +22,24 @@ class FeedReaderDbHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_
         // If you change the database schema, you must increment the database version.
         const val DATABASE_VERSION = 1
         const val DATABASE_NAME = "FeedReader.db"
+
+        private const val SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS ${FeedReaderContract.FeedEntry.TABLE_NAME}"
         private const val SQL_CREATE_ENTRIES =
-                "CREATE TABLE ${MainActivity.FeedReaderContract.FeedEntry.TABLE_NAME} (" +
+                "CREATE TABLE ${FeedReaderContract.FeedEntry.TABLE_NAME} (" +
                         "${BaseColumns._ID} INTEGER PRIMARY KEY," +
-                        "${MainActivity.FeedReaderContract.FeedEntry.COLUMN_NAME_TITLE} TEXT," +
-                        "${MainActivity.FeedReaderContract.FeedEntry.COLUMN_NAME_SUBTITLE} TEXT)"
-        private const val SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS ${MainActivity.FeedReaderContract.FeedEntry.TABLE_NAME}"
+                        "${FeedReaderContract.FeedEntry.COLUMN_FORM} TEXT)" +
+                        "${FeedReaderContract.FeedEntry.COLUMN_GUESS_VALUE} INTEGER)"+
+                        "${FeedReaderContract.FeedEntry.COLUMN_ACTUAL_VALUE} INTEGER)"
     }
 
+    object FeedReaderContract {
+        // Table contents are grouped together in an anonymous object.
+        object FeedEntry : BaseColumns {
+            const val TABLE_NAME = "vis"
+            const val COLUMN_NAME_TITLE = "participant_1"
+            const val COLUMN_FORM = "participation_form"
+            const val COLUMN_GUESS_VALUE = "guessed_value"
+            const val COLUMN_ACTUAL_VALUE = "actual_value"
+        }
+    }
 }

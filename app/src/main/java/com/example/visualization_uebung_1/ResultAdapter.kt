@@ -44,31 +44,22 @@ class ResultAdapter(val context: Context) : RecyclerView.Adapter<ResultAdapter.V
 
         holder.itemView.textCorrectGuess.text = "Correct guesses ${result.correctGuessed}"
         holder.itemView.textFalseGuess.text = "False guesses ${result.falseGuessed}"
-        if (correctAmount > falseAmount && falseAmount != 0) {
-            val ratio = correctAmount/falseAmount
-            setBar(holder.itemView.imageCorrectBar, 1)
-            setBar(holder.itemView.imageFalseBar, ratio)
-        }
-        else if (falseAmount > correctAmount && correctAmount != 0) {
-            val ratio = falseAmount/correctAmount
-            setBar(holder.itemView.imageCorrectBar, ratio)
-            setBar(holder.itemView.imageFalseBar, 1)
-        }
-        else if (correctAmount > falseAmount){
+        if (falseAmount == 0) {
             setBar(holder.itemView.imageCorrectBar, 1)
             setBar(holder.itemView.imageFalseBar, 0)
         }
-        else if (falseAmount > correctAmount) {
+        else if (correctAmount == 0 && falseAmount > 0) {
             setBar(holder.itemView.imageCorrectBar, 0)
             setBar(holder.itemView.imageFalseBar, 1)
         }
-        else if(falseAmount == 0 && correctAmount == 0){
-            setBar(holder.itemView.imageCorrectBar, 0)
-            setBar(holder.itemView.imageFalseBar, 0)
+        else if (correctAmount > 0 && falseAmount > 0) {
+            val fullBar = falseAmount+correctAmount
+            setBar(holder.itemView.imageCorrectBar, fullBar/correctAmount)
+            setBar(holder.itemView.imageFalseBar, fullBar/falseAmount)
         }
         else {
-            setBar(holder.itemView.imageCorrectBar, 1)
-            setBar(holder.itemView.imageFalseBar, 1)
+            setBar(holder.itemView.imageCorrectBar, 0)
+            setBar(holder.itemView.imageFalseBar, 0)
         }
     }
 

@@ -52,8 +52,8 @@ class TaskFillFragment : Fragment() {
     }
 
     private fun setUp() {
-        val randomScale: Int = Random.nextInt(1, 10)
-        val randomScale2 = Random.nextInt(1, 10)
+        val randomScale: Int = Random.nextInt(2, 10)
+        val randomScale2 = Random.nextInt(2, 10)
 
         val vto = image2.viewTreeObserver
         vto.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {

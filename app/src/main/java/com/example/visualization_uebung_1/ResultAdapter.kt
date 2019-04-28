@@ -42,6 +42,8 @@ class ResultAdapter(val context: Context) : RecyclerView.Adapter<ResultAdapter.V
         val correctAmount = result.correctGuessed
         val falseAmount = result.falseGuessed
 
+        holder.itemView.textCorrectGuess.text = "Correct guesses ${result.correctGuessed}"
+        holder.itemView.textFalseGuess.text = "False guesses ${result.falseGuessed}"
         if (correctAmount > falseAmount && falseAmount != 0) {
             val ratio = correctAmount/falseAmount
             setBar(holder.itemView.imageCorrectBar, 1)
@@ -54,11 +56,15 @@ class ResultAdapter(val context: Context) : RecyclerView.Adapter<ResultAdapter.V
         }
         else if (correctAmount > falseAmount){
             setBar(holder.itemView.imageCorrectBar, 1)
-            setBar(holder.itemView.imageFalseBar, 800)
+            setBar(holder.itemView.imageFalseBar, 0)
         }
         else if (falseAmount > correctAmount) {
-            setBar(holder.itemView.imageCorrectBar, 800)
+            setBar(holder.itemView.imageCorrectBar, 0)
             setBar(holder.itemView.imageFalseBar, 1)
+        }
+        else if(falseAmount == 0 && correctAmount == 0){
+            setBar(holder.itemView.imageCorrectBar, 0)
+            setBar(holder.itemView.imageFalseBar, 0)
         }
         else {
             setBar(holder.itemView.imageCorrectBar, 1)
@@ -76,8 +82,13 @@ class ResultAdapter(val context: Context) : RecyclerView.Adapter<ResultAdapter.V
         // for scaling mulitply right and bottom and reduce left and top
         var left = 0
         var top = 0
-        var right = 800/ratio
+        var right = 800
         var bottom = 200
+
+        if (ratio != 0){
+            right /= ratio
+        } else
+            right = 0
 
         // draw rectangle shape to canvas
         shapeRectangle1.setBounds(left, top, right, bottom)

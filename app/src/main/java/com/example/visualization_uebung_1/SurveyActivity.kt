@@ -10,9 +10,8 @@ import com.example.visualization_uebung_1.TaskFillFragment.EnterListener
 import kotlinx.android.synthetic.main.activity_survey.*
 
 
-
-
 class SurveyActivity: AppCompatActivity(), EnterListener{
+
 
 
     var fillFragment: TaskFillFragment? = null
@@ -33,7 +32,6 @@ class SurveyActivity: AppCompatActivity(), EnterListener{
 
     override fun onEnter(form: String, scale: Int, guess: Int) {
 
-
         var i = 0
         while(i < cumulativeResultList.size){
             if (cumulativeResultList[i].shape == form && cumulativeResultList[i].scale == scale){
@@ -43,6 +41,7 @@ class SurveyActivity: AppCompatActivity(), EnterListener{
                 else cumulativeResultList[i].falseGuessed++
                 break
             }
+            i++
         }
 
         /*
@@ -77,8 +76,10 @@ class SurveyActivity: AppCompatActivity(), EnterListener{
         }
     }
 
-
-    fun setResult(shape: String, input: Int, calculated: Int){
-           }
-    // Gets the data repository in write mode
+    override fun onFinish() {
+        val manager = this.supportFragmentManager
+        val fragment = StatisticsFragment()
+        manager.beginTransaction().replace( this.fragmentContainer.id, fragment, "StatisticFragment").commit()
+        fragment.setResults(cumulativeResultList)
+    }
 }

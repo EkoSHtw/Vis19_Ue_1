@@ -159,15 +159,18 @@ class TaskFillFragment : Fragment() {
         }
 
         this.buttonFinish.setOnClickListener{
-            listener?.onEnter("Rectangle", randomScale, this.editTextFilledAnswer.text.toString().toInt())
-            listener?.onEnter("Circle", randomScale2, this.editTextFilledAnswer2.text.toString().toInt())
-            editTextFilledAnswer.text.clear()
-            editTextFilledAnswer2.text.clear()
-            //TODO add mechanic to switch to result screen
+            if(!editTextFilledAnswer.text.toString().isEmpty() && !editTextFilledAnswer2.text.toString().isEmpty()) {
+                listener?.onEnter("Rectangle", randomScale, this.editTextFilledAnswer.text.toString().toInt())
+                listener?.onEnter("Circle", randomScale2, this.editTextFilledAnswer2.text.toString().toInt())
+                editTextFilledAnswer.text.clear()
+                editTextFilledAnswer2.text.clear()
+            }
+            listener?.onFinish()
         }
     }
 
     interface EnterListener{
-        fun onEnter(form: String, scale: Int, gueass: Int)
+        fun onEnter(form: String, scale: Int, guess: Int)
+        fun onFinish()
     }
 }

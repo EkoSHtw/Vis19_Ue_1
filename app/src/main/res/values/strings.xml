@@ -4,6 +4,7 @@
     <string name="scale_question_2">Verwende den Slider um das passende Verhältnis anzuzeigen</string>
 
     <string name="baseScale">1 :</string>
+    <string name="scaledValue">Scaled Value: %1$s</string>
 
     <!-- Actions-->
     <string name="action_start_survey">Start Survey</string>

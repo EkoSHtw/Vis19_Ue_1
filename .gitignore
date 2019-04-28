@@ -1,45 +1,57 @@
-# Built application files
-/*/build/
+# OSX
+#
+.DS_Store
 
-# Crashlytics configuations
-com_crashlytics_export_strings.xml
+# Xcode
+#
+build/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+*.xccheckout
+*.moved-aside
+DerivedData
+*.hmap
+*.ipa
+*.xcuserstate
+project.xcworkspace
 
-# Local configuration file (sdk path, etc)
-local.properties
-
-# Gradle generated files
+# Android/IntelliJ
+#
 build/
 .idea
 .gradle
 local.properties
 *.iml
-# Signing files
-.signing/
 
-# User-specific configurations
-.idea/libraries/
-.idea/workspace.xml
-.idea/tasks.xml
-.idea/.name
-.idea/compiler.xml
-.idea/copyright/profiles_settings.xml
-.idea/encodings.xml
-.idea/misc.xml
-.idea/modules.xml
-.idea/scopes/scope_settings.xml
-.idea/vcs.xml
-*.iml
+# node.js
+#
+node_modules/
+npm-debug.log
+yarn-error.log
 
-# OS-specific files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-*.lock
+# BUCK
+buck-out/
+\.buckd/
+*.keystore
 
-*.bin
+# fastlane
+#
+# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
+# screenshots whenever they are needed.
+# For more information about the recommended setup visit:
+# https://docs.fastlane.tools/best-practices/source-control/
 
-\.idea/
+*/fastlane/report.xml
+*/fastlane/Preview.html
+*/fastlane/screenshots
+
+
+# android temp
+

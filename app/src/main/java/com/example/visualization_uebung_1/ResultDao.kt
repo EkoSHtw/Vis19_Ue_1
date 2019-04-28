@@ -13,6 +13,12 @@ interface ResultDao {
     @Query("SELECT * FROM ResultData WHERE shape LIKE :shape")
     fun findByShape(shape: String): ResultData
 
+    @Query("UPDATE ResultData SET correct= :correct WHERE id = :id")
+    fun setCorrectById(correct: String, id: Int): Int
+
+    @Query("UPDATE ResultData SET false= :falseValue WHERE id = :id")
+    fun setFalseById(falseValue: String, id: Int): Int
+
     @Insert
     fun insertAll(vararg results: ResultData)
 

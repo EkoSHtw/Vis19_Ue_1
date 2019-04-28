@@ -1,9 +1,9 @@
 package com.example.visualization_uebung_1
 
 
-import android.content.ContentValues
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.room.Room
 import com.example.visualization_uebung_1.TaskFillFragment.EnterListener
 
 
@@ -29,7 +29,6 @@ class SurveyActivity : AppCompatActivity(), EnterListener {
     override fun onEnter(form: String, scale: Int, guess: Int) {
 
         var i = 0
-
         while (i < cumulativeResultList.size) {
             if (cumulativeResultList[i].shape == form && cumulativeResultList[i].scale == scale) {
                 if (scale == guess) {
@@ -41,29 +40,10 @@ class SurveyActivity : AppCompatActivity(), EnterListener {
             }
             i++
         }
-
-        /*
-        val pair = ResultUnit(form, scale, guess)
-        result.add(pair)
-        val db = dbHelper.writableDatabase
-
-        // Create a new map of values, where column names are the keys
-
-        val values = ContentValues().apply {
-            put(FeedReaderDbHelper.FeedReaderContract.FeedEntry.COLUMN_FORM, pair.getShape())
-            put(FeedReaderDbHelper.FeedReaderContract.FeedEntry.COLUMN_GUESS_VALUE, pair.getUserScale())
-            put(FeedReaderDbHelper.FeedReaderContract.FeedEntry.COLUMN_ACTUAL_VALUE,pair.getTrueScale())
-        }
-        // Insert the new row, returning the primary key value of the new row
-        val newRowId = db?.insert(FeedReaderDbHelper.FeedReaderContract.FeedEntry.TABLE_NAME, null, values)
-        */
     }
 
 
     fun initResultList() {
-
-
-
         var i = 2
         while (i < 11) {
             cumulativeResultList.add(CumulativeResultUnit("Rectangle", i))
@@ -83,6 +63,10 @@ class SurveyActivity : AppCompatActivity(), EnterListener {
         val fragment = StatisticsFragment()
         manager.beginTransaction().replace(this.fragmentContainer.id, fragment, "StatisticFragment").commit()
         fragment.setResults(cumulativeResultList)
+        val db = Room.databaseBuilder(
+                applicationContext,
+                ResultDatabase::class.java, "Vis_Ue_1"
+        ).build()
 
         fragment.xFactor = xList.average()
     }

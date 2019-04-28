@@ -14,10 +14,10 @@ interface ResultDao {
     fun findByShape(shape: String): ResultData
 
     @Query("UPDATE ResultData SET correct= :correct WHERE id = :id")
-    fun setCorrectById(correct: String, id: Int): Int
+    fun setCorrectById(correct: Int, id: Int): Int
 
     @Query("UPDATE ResultData SET false= :falseValue WHERE id = :id")
-    fun setFalseById(falseValue: String, id: Int): Int
+    fun setFalseById(falseValue: Int, id: Int): Int
 
     @Insert
     fun insertAll(vararg results: ResultData)

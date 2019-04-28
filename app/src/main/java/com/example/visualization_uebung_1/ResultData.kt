@@ -8,5 +8,5 @@ data class ResultData(
         @ColumnInfo(name = "shape") val shape: String?,
         @ColumnInfo(name = "scaling") val scaled: Int?,
         @ColumnInfo(name = "correct") val correctGuess: Int?,
-        @ColumnInfo(name = "correct") val falseGuess: Int?
+        @ColumnInfo(name = "false") val falseGuess: Int?
 )

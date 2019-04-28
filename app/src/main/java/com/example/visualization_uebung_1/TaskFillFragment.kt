@@ -51,8 +51,6 @@ class TaskFillFragment : Fragment() {
     }
 
     private fun setUp() {
-
-
         val randomScale: Int = Random.nextInt(1, 20)
         val randomScale2 = Random.nextInt(1, 20)
 

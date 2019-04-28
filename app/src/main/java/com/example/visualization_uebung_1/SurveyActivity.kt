@@ -1,7 +1,6 @@
 package com.example.visualization_uebung_1
 
 
-import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 
@@ -12,7 +11,7 @@ class SurveyActivity: AppCompatActivity(){
 
     var fillFragment: TaskFillFragment? = null
     var sliderFragment: TaskSliderFragment? = null
-    val result = ArrayList<ScalePair>()
+    val result = ArrayList<ResultUnit>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +21,7 @@ class SurveyActivity: AppCompatActivity(){
     }
 
     fun setResult(shape: String, input: Int, calculated: Int){
-        val pair = ScalePair(shape, calculated, input)
+        val pair = ResultUnit(shape, calculated, input)
         result.add(pair)
     }
 }

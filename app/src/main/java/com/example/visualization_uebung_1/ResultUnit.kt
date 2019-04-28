@@ -1,6 +1,6 @@
 package com.example.visualization_uebung_1
 
-class ScalePair(){
+class ResultUnit(){
 
     private var shape: String = ""
     private var trueScale: Int? = null;

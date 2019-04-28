@@ -17,9 +17,9 @@ class ResultUnit(){
         if(trueScale == null) return 0;
         return trueScale as Int
     }
+
     fun getUserScale(): Int{
         if(userScale == null) return 0;
         return userScale as Int
     }
-
 }

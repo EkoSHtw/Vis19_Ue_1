@@ -8,4 +8,8 @@ public class test extends Activity {
     private void startIntent(){
         Intent intent = new Intent(this, SurveyActivity.class);
     }
+
+    public test(){
+
+    }
 }

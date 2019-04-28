@@ -5,6 +5,7 @@ class CumulativeResultUnit(){
 
     var shape: String = ""
     var scale: Int? = null
+    var xFactor: Double? = null
     var correctGuessed = 0
     var falseGuessed = 0
 

@@ -16,10 +16,15 @@
             android:padding="4dp">
 
             <TextView
+                android:id="@+id/textShape"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
                 android:id="@+id/scaledValue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="6dp"
+                android:layout_marginBottom="6dp"
                 />
 
             <TextView

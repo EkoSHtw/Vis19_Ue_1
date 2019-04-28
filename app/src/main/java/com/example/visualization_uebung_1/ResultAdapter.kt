@@ -38,7 +38,7 @@ class ResultAdapter(val context: Context) : RecyclerView.Adapter<ResultAdapter.V
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val result = data[position]
         holder.itemView.scaledValue.text = "Scaled Value: ${result.scale}"
-
+        holder.itemView.textShape.text = result.shape
         val correctAmount = result.correctGuessed
         val falseAmount = result.falseGuessed
 

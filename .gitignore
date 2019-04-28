@@ -8,8 +8,11 @@ com_crashlytics_export_strings.xml
 local.properties
 
 # Gradle generated files
-.gradle/
-
+build/
+.idea
+.gradle
+local.properties
+*.iml
 # Signing files
 .signing/
 

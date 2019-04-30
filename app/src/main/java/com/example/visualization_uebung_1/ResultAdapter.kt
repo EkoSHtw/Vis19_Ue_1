@@ -44,7 +44,7 @@ class ResultAdapter(val context: Context) : RecyclerView.Adapter<ResultAdapter.V
 
         holder.itemView.textCorrectGuess.text = "Correct guesses ${result.correctGuessed}"
         holder.itemView.textFalseGuess.text = "False guesses ${result.falseGuessed}"
-        if (falseAmount == 0) {
+        if (falseAmount == 0 && correctAmount > 0) {
             setBar(holder.itemView.imageCorrectBar, 1)
             setBar(holder.itemView.imageFalseBar, 0)
         }

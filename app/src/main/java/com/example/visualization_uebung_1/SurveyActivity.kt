@@ -83,7 +83,6 @@ class SurveyActivity : AppCompatActivity(), EnterListener {
         val fragment = StatisticsFragment()
         manager.beginTransaction().replace(this.fragmentContainer.id, fragment, "StatisticFragment").commit()
         fragment.setResults(cumulativeResultList)
-
         fragment.xFactor = xList.average()
     }
 }

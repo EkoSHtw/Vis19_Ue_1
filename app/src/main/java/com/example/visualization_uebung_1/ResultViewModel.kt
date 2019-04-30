@@ -16,12 +16,12 @@ class ResultViewModel(application: Application) : AndroidViewModel(application) 
     private val scope = CoroutineScope(coroutineContext)
 
     private val repository: ResultRepository
-    val allWords: List<ResultData>
+    val allResults: List<ResultData>
 
     init {
         val resultDao = ResultDatabase.getDatabase(application.baseContext).resultDao()
         repository = ResultRepository(resultDao)
-        allWords = repository.resultList
+        allResults = repository.resultList
     }
 
     override fun onCleared() {

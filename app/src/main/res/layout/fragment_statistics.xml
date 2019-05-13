@@ -6,14 +6,23 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp">
-
+        android:layout_height="50dp"
+        android:orientation="vertical">
         <TextView
             android:id="@+id/textXValue"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"/>
-
+        <TextView
+            android:id="@+id/textXRectangleValue"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"/>
+        <TextView
+            android:id="@+id/textXCircleValue"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"/>
     </LinearLayout>
 
     <androidx.core.widget.NestedScrollView

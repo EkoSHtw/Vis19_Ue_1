@@ -1,7 +1,6 @@
 package com.example.visualization_uebung_1
 
 
-import android.content.ContentValues
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.visualization_uebung_1.TaskFillFragment.EnterListener
@@ -15,6 +14,8 @@ class SurveyActivity : AppCompatActivity(), EnterListener {
 
     val cumulativeResultList = ArrayList<CumulativeResultUnit>()
     var xList = ArrayList<Double>()
+    var xRectangleList = ArrayList<Double>()
+    var xCircleList = ArrayList<Double>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,24 +27,28 @@ class SurveyActivity : AppCompatActivity(), EnterListener {
         initResultList()
     }
 
-    override fun onEnter(form: String, scale: Int, guess: Int) {
+    override fun onEnter(shape: String, scale: Int, guess: Int) {
         var i = 0
+        var calculatedX = 0.0
         while (i < cumulativeResultList.size) {
-            if (cumulativeResultList[i].shape == form && cumulativeResultList[i].scale == scale) {
+            if (cumulativeResultList[i].shape == shape && cumulativeResultList[i].scale == scale) {
                 if (scale == guess) {
                     cumulativeResultList[i].correctGuessed++
                 } else cumulativeResultList[i].falseGuessed++
-
-                xList.add(Math.log(scale.toDouble()/Math.log(guess.toDouble())))
+                calculatedX = Math.log(scale.toDouble()/Math.log(guess.toDouble()))
+                if(shape == "Rectangle"){
+                    xRectangleList.add(calculatedX)
+                } else {
+                    xCircleList.add(calculatedX)
+                }
+                xList.add(calculatedX)
                 break
             }
             i++
         }
     }
 
-
-    fun initResultList() {
-
+    private fun initResultList() {
         var i = 2
         while (i < 11) {
             cumulativeResultList.add(CumulativeResultUnit("Rectangle", i))
@@ -54,7 +59,6 @@ class SurveyActivity : AppCompatActivity(), EnterListener {
             cumulativeResultList.add(CumulativeResultUnit("Circle", i))
             i++
         }
-
     }
 
     override fun onFinish() {

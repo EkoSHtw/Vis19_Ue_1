@@ -87,7 +87,7 @@ class TaskFillFragment : Fragment() {
                 editTextFilledAnswer2.text.clear()
                 setUp()
             } else {
-                Toast.makeText(context, "Please fill all fields", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "Please fill out all fields", Toast.LENGTH_LONG).show()
             }
         }
 

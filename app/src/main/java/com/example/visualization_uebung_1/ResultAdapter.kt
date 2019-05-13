@@ -1,6 +1,5 @@
 package com.example.visualization_uebung_1
 
-
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
@@ -21,6 +20,8 @@ import kotlinx.android.synthetic.main.holder_statistic.view.*
 class ResultAdapter(val context: Context) : RecyclerView.Adapter<ResultAdapter.ViewHolder>() {
 
     private var data = ArrayList<CumulativeResultUnit>()
+    private val colorGreen = "#005544"
+    private val colorRed = "#EE1111"
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.holder_statistic, parent, false)
@@ -45,25 +46,25 @@ class ResultAdapter(val context: Context) : RecyclerView.Adapter<ResultAdapter.V
         holder.itemView.textCorrectGuess.text = "Correct guesses ${result.correctGuessed}"
         holder.itemView.textFalseGuess.text = "False guesses ${result.falseGuessed}"
         if (falseAmount == 0 && correctAmount > 0) {
-            setBar(holder.itemView.imageCorrectBar, 1)
-            setBar(holder.itemView.imageFalseBar, 0)
+            setBar(holder.itemView.imageCorrectBar, 1, colorGreen)
+            setBar(holder.itemView.imageFalseBar, 0, colorRed)
         }
         else if (correctAmount == 0 && falseAmount > 0) {
-            setBar(holder.itemView.imageCorrectBar, 0)
-            setBar(holder.itemView.imageFalseBar, 1)
+            setBar(holder.itemView.imageCorrectBar, 0, colorGreen)
+            setBar(holder.itemView.imageFalseBar, 1, colorRed)
         }
         else if (correctAmount > 0 && falseAmount > 0) {
             val fullBar = falseAmount+correctAmount
-            setBar(holder.itemView.imageCorrectBar, fullBar/correctAmount)
-            setBar(holder.itemView.imageFalseBar, fullBar/falseAmount)
+            setBar(holder.itemView.imageCorrectBar, fullBar/correctAmount, colorGreen)
+            setBar(holder.itemView.imageFalseBar, fullBar/falseAmount, colorRed)
         }
         else {
-            setBar(holder.itemView.imageCorrectBar, 0)
-            setBar(holder.itemView.imageFalseBar, 0)
+            setBar(holder.itemView.imageCorrectBar, 0, colorGreen)
+            setBar(holder.itemView.imageFalseBar, 0, colorRed)
         }
     }
 
-    private fun setBar(view: ImageView, ratio: Int) {
+    private fun setBar(view: ImageView, ratio: Int, color: String) {
 
         val bitmap: Bitmap = Bitmap.createBitmap(800, 200, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bitmap)
@@ -87,7 +88,6 @@ class ResultAdapter(val context: Context) : RecyclerView.Adapter<ResultAdapter.V
         shapeRectangle1.draw(canvas)
         view.background = BitmapDrawable(context.resources, bitmap)
     }
-
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {}
 

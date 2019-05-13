@@ -66,7 +66,8 @@ class SurveyActivity : AppCompatActivity(), EnterListener {
         val manager = this.supportFragmentManager
         val fragment = StatisticsFragment()
         manager.beginTransaction().replace(this.fragmentContainer.id, fragment, "StatisticFragment").commit()
-        fragment.setResults(cumulativeResultList)
+
+        fragment.setResults(cumulativeResultList.filter { s -> s.falseGuessed > 0 || s.correctGuessed > 0} as ArrayList<CumulativeResultUnit>)
         fragment.xFactor = xList.average()
         fragment.xFactorRect = xRectangleList.average()
         fragment.xFactorCircle = xCircleList.average()

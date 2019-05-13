@@ -35,7 +35,7 @@ class SurveyActivity : AppCompatActivity(), EnterListener {
                 if (scale == guess) {
                     cumulativeResultList[i].correctGuessed++
                 } else cumulativeResultList[i].falseGuessed++
-                calculatedX = ln(scale.toDouble()/ln(guess.toDouble()))
+                calculatedX = ln(scale.toDouble())/ln(guess.toDouble())
 
                 if(shape == "Rectangle"){
                     xRectangleList.add(calculatedX)

@@ -32,14 +32,20 @@ class ResultAdapter(val context: Context) : RecyclerView.Adapter<ResultAdapter.V
         return data.size
     }
 
-    fun setData(data: ArrayList<CumulativeResultUnit>){
+    fun setData(data: ArrayList<CumulativeResultUnit>) {
         this.data = data;
         notifyDataSetChanged()
     }
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val result = data[position]
         holder.itemView.scaledValue.text = "Scaled Value: ${result.scale}"
         holder.itemView.textShape.text = result.shape
+
+        if (result.shape == "Circle")
+            holder.itemView.imageRectangle.visibility = View.GONE
+        else
+            holder.itemView.imageCircle.visibility = View.GONE
         val correctAmount = result.correctGuessed
         val falseAmount = result.falseGuessed
 
@@ -48,17 +54,14 @@ class ResultAdapter(val context: Context) : RecyclerView.Adapter<ResultAdapter.V
         if (falseAmount == 0 && correctAmount > 0) {
             setBar(holder.itemView.imageCorrectBar, 1, colorGreen)
             setBar(holder.itemView.imageFalseBar, 0, colorRed)
-        }
-        else if (correctAmount == 0 && falseAmount > 0) {
+        } else if (correctAmount == 0 && falseAmount > 0) {
             setBar(holder.itemView.imageCorrectBar, 0, colorGreen)
             setBar(holder.itemView.imageFalseBar, 1, colorRed)
-        }
-        else if (correctAmount > 0 && falseAmount > 0) {
-            val fullBar = falseAmount+correctAmount
-            setBar(holder.itemView.imageCorrectBar, fullBar/correctAmount, colorGreen)
-            setBar(holder.itemView.imageFalseBar, fullBar/falseAmount, colorRed)
-        }
-        else {
+        } else if (correctAmount > 0 && falseAmount > 0) {
+            val fullBar = falseAmount + correctAmount
+            setBar(holder.itemView.imageCorrectBar, fullBar / correctAmount, colorGreen)
+            setBar(holder.itemView.imageFalseBar, fullBar / falseAmount, colorRed)
+        } else {
             setBar(holder.itemView.imageCorrectBar, 0, colorGreen)
             setBar(holder.itemView.imageFalseBar, 0, colorRed)
         }
@@ -77,7 +80,7 @@ class ResultAdapter(val context: Context) : RecyclerView.Adapter<ResultAdapter.V
         var right = 800
         var bottom = 200
 
-        if (ratio != 0){
+        if (ratio != 0) {
             right /= ratio
         } else
             right = 0

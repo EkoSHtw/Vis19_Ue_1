@@ -1,12 +1,12 @@
 package com.example.visualization_uebung_1
 
-
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.visualization_uebung_1.TaskFillFragment.EnterListener
 
 
 import kotlinx.android.synthetic.main.activity_survey.*
+import kotlin.math.ln
 
 
 class SurveyActivity : AppCompatActivity(), EnterListener {
@@ -35,7 +35,8 @@ class SurveyActivity : AppCompatActivity(), EnterListener {
                 if (scale == guess) {
                     cumulativeResultList[i].correctGuessed++
                 } else cumulativeResultList[i].falseGuessed++
-                calculatedX = Math.log(scale.toDouble()/Math.log(guess.toDouble()))
+                calculatedX = ln(scale.toDouble()/ln(guess.toDouble()))
+
                 if(shape == "Rectangle"){
                     xRectangleList.add(calculatedX)
                 } else {
@@ -67,5 +68,7 @@ class SurveyActivity : AppCompatActivity(), EnterListener {
         manager.beginTransaction().replace(this.fragmentContainer.id, fragment, "StatisticFragment").commit()
         fragment.setResults(cumulativeResultList)
         fragment.xFactor = xList.average()
+        fragment.xFactorRect = xRectangleList.average()
+        fragment.xFactorCircle = xCircleList.average()
     }
 }

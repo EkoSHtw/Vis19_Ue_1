@@ -14,6 +14,8 @@ class StatisticsFragment :Fragment(){
     var result = ArrayList<CumulativeResultUnit>()
     var adapter: ResultAdapter? = null
     var xFactor: Double? = null
+    var xFactorRect: Double ? = null
+    var xFactorCircle: Double? = null
 
 
     override fun onAttach(context: Context?) {
@@ -34,6 +36,10 @@ class StatisticsFragment :Fragment(){
         view.recyclerView.layoutManager = LinearLayoutManager(activity);
         view.recyclerView.adapter = adapter
         view.textXValue.text = "Your X Factor is ${xFactor}"
+        view.textXCircleValue.text = "Your X Factor for Circles is ${xFactorCircle}"
+        view.textXRectangleValue.text = "Your X Factor for Rectangles is ${xFactorRect}"
+
+
         return view
     }
 

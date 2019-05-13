@@ -7,7 +7,7 @@
     <string name="scaledValue">Scaled Value: %1$s</string>
 
     <!-- Actions-->
-    <string name="action_start_survey">Start Survey</string>
+    <string name="action_start_survey">Start!</string>
     <string name="action_enter">Enter</string>
     <string name="action_finish">Finish</string>
 </resources>

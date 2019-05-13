@@ -18,6 +18,7 @@
                 android:id="@+id/textTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="23sp"
                 android:text="@string/scale_question_1"
                 app:layout_constraintBottom_toTopOf="@+id/containerImages"
                 app:layout_constraintLeft_toLeftOf="parent"

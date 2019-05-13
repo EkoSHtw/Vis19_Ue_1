@@ -84,7 +84,7 @@ class ResultAdapter(val context: Context) : RecyclerView.Adapter<ResultAdapter.V
 
         // draw rectangle shape to canvas
         shapeRectangle1.setBounds(left, top, right, bottom)
-        shapeRectangle1.paint.color = Color.parseColor("#005544")
+        shapeRectangle1.paint.color = Color.parseColor(color)
         shapeRectangle1.draw(canvas)
         view.background = BitmapDrawable(context.resources, bitmap)
     }

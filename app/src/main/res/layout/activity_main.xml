@@ -14,7 +14,7 @@
             android:id="@+id/textWelcomeMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello World!"
+            android:text="Welcome! To start the test, click on the Button below"
             app:layout_constraintBottom_toTopOf="@id/buttonStart"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
